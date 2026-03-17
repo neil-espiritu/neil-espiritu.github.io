@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neil Abner Espiritu — NetSuite Data & AI Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #181818;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #f0ede8;
+    --muted: #888880;
+    --accent: #c8f060;
+    --accent2: #7dd4fc;
+    --accent3: #f0a060;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,240,96,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,240,96,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    line-height: 1.0;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    max-width: 540px;
+    font-size: 17px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+    line-height: 1.75;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s forwards;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0a;
+    padding: 13px 28px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: opacity 0.2s, transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 13px 28px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--border2);
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--text); transform: translateY(-1px); }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; right: 4rem;
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); letter-spacing: 0.1em;
+    writing-mode: vertical-rl;
+    opacity: 0; animation: fadeIn 1s 1.2s forwards;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 48px;
+    background: var(--border2);
+    display: block;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .divider {
+    width: 100%; height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+    line-height: 1.85;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-stats {
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+  .stat-row {
+    display: flex; align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    gap: 1.5rem;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--accent);
+    font-weight: 400;
+    min-width: 80px;
+    line-height: 1;
+  }
+  .stat-info {}
+  .stat-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 3.5rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-card {
+    background: var(--bg2);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .skill-card:hover { background: var(--bg3); }
+  .skill-card + .skill-card { border-left: 1px solid var(--border); }
+  .skills-grid .skill-row-grid { border-top: 1px solid var(--border); }
+  .skill-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .skill-card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+  .tag-green { background: rgba(200,240,96,0.1); color: var(--accent); border: 1px solid rgba(200,240,96,0.2); }
+  .tag-blue { background: rgba(125,212,252,0.1); color: var(--accent2); border: 1px solid rgba(125,212,252,0.2); }
+  .tag-orange { background: rgba(240,160,96,0.1); color: var(--accent3); border: 1px solid rgba(240,160,96,0.2); }
+  .tag-gray { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--border2); }
+  .skill-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  .cert-row {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 3rem;
+  }
+  .cert-badge {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 18px;
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    background: var(--bg3);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .cert-badge span { font-size: 16px; }
+  .cert-badge small { display: block; font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 1px; }
+
+  /* ── PROJECTS ── */
+  .projects-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .project-item:last-child { border-bottom: none; }
+  .project-item:hover { background: var(--bg3); }
+  .project-num {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    color: var(--border2);
+    line-height: 1;
+    padding-top: 4px;
+    font-style: italic;
+  }
+  .project-info {}
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .project-title { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.3; }
+  .project-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 520px; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .project-arrow {
+    font-size: 18px; color: var(--border2);
+    padding-top: 6px;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .project-item:hover .project-arrow { color: var(--accent); transform: translate(3px, -3px); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--bg2); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+  .contact-info p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; font-weight: 300; }
+  .contact-detail {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .contact-line {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 13px; color: var(--muted);
+  }
+  .contact-line strong { color: var(--text); font-weight: 500; min-width: 80px; }
+  .contact-line a { color: var(--accent2); text-decoration: none; }
+  .contact-line a:hover { text-decoration: underline; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--accent); }
+  .form-group textarea { min-height: 120px; }
+  .form-group select option { background: var(--bg3); }
+  .form-success {
+    display: none;
+    background: rgba(200,240,96,0.08);
+    border: 1px solid rgba(200,240,96,0.25);
+    border-radius: 2px;
+    padding: 16px;
+    font-size: 14px;
+    color: var(--accent);
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; font-family: var(--mono); transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-scroll { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-card + .skill-card { border-left: none; border-top: 1px solid var(--border); }
+    .project-item { grid-template-columns: 48px 1fr auto; gap: 1rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">NAE_PORTFOLIO.V1</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-tag">NetSuite · Data Analytics · AI Integration</div>
+  <h1>Neil Abner<br><em>Espiritu</em></h1>
+  <p class="hero-desc">I help businesses unlock the full value of their NetSuite data — turning raw ERP exports into intelligent dashboards, automated reports, and AI-powered insights that drive real decisions.</p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View my work</a>
+    <a href="#contact" class="btn-secondary">Work with me</a>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — About</div>
+  <h2 class="section-title">ERP expertise meets<br><em>data intelligence</em></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>NetSuite specialist and data analyst</strong> based in the Philippines, combining deep ERP knowledge with modern data and AI skills to help companies make better decisions, faster.</p>
+      <p>Most data analysts don't understand ERP systems. Most ERP consultants don't speak the language of data. <strong>I bridge both worlds</strong> — translating your NetSuite data into dashboards, automations, and AI workflows that your finance and operations teams can actually use.</p>
+      <p>Currently building expertise in <strong>Python, SQL, Power BI, and NetSuite's AI features</strong> — with a focus on the small-to-mid-sized businesses that need senior-level data strategy without the enterprise price tag.</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-row">
+        <div class="stat-num">6+</div>
+        <div class="stat-info">
+          <div class="stat-title">Months focused learning</div>
+          <div class="stat-sub">2 hours daily, structured curriculum</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">2</div>
+        <div class="stat-info">
+          <div class="stat-title">NetSuite certifications</div>
+          <div class="stat-sub">SuiteFoundation · Admin</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">3</div>
+        <div class="stat-info">
+          <div class="stat-title">Portfolio projects</div>
+          <div class="stat-sub">Excel · Power BI · Python automation</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">PH</div>
+        <div class="stat-info">
+          <div class="stat-title">Based in Philippines</div>
+          <div class="stat-sub">Available for remote & local engagements</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Skills & Certifications</div>
+  <h2 class="section-title">A rare combination of<br><em>ERP, data & AI</em></h2>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <span class="skill-icon">⬡</span>
+      <div class="skill-card-title">NetSuite ERP</div>
+      <div class="skill-tags">
+        <span class="tag tag-green">SuiteAnalytics</span>
+        <span class="tag tag-green">SuiteQL</span>
+        <span class="tag tag-green">Saved Searches</span>
+        <span class="tag tag-green">Workflows</span>
+        <span class="tag tag-green">REST API</span>
+        <span class="tag tag-green">AI Features</span>
+      </div>
+      <p>Deep platform knowledge covering financials, inventory, procurement, and reporting — the foundation everything else is built on.</p>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">◈</span>
+      <div class="skill-card-title">Data Analysis</div>
+      <div class="skill-tags">
+        <span class="tag tag-blue">Python</span>
+        <span class="tag tag-blue">Pandas</span>
+        <span class="tag tag-blue">SQL</span>
+        <span class="tag tag-blue">Excel</span>
+        <span class="tag tag-blue">Power BI</span>
+        <span class="tag tag-blue">DAX</span>
+      </div>
+      <p>From raw data exports to executive dashboards — I clean, transform, analyze, and visualize data that drives decisions.</p>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">◎</span>
+      <div class="skill-card-title">AI & Automation</div>
+      <div class="skill-tags">
+        <span class="tag tag-orange">Prompt Engineering</span>
+        <span class="tag tag-orange">NS AI Copilot</span>
+        <span class="tag tag-orange">Bill Capture</span>
+        <span class="tag tag-orange">Workflow AI</span>
+        <span class="tag tag-orange">Python Scripts</span>
+      </div>
+      <p>Automating the manual, repetitive work that slows finance teams down — using AI tools built into NetSuite and custom Python scripts.</p>
+    </div>
+  </div>
+
+  <div class="cert-row reveal">
+    <div class="cert-badge"><span>🏅</span><div><div>NetSuite SuiteFoundation</div><small>Oracle Certified · In Progress</small></div></div>
+    <div class="cert-badge"><span>🏅</span><div><div>NetSuite Administrator</div><small>Oracle Certified · In Progress</small></div></div>
+    <div class="cert-badge"><span>📊</span><div><div>Power BI Data Analyst</div><small>Microsoft · Planned</small></div></div>
+    <div class="cert-badge"><span>🐍</span><div><div>Python for Data Science</div><small>Kaggle Certified · In Progress</small></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 — Projects & Case Studies</div>
+  <h2 class="section-title">Real work,<br><em>real results</em></h2>
+  <div class="projects-list reveal">
+
+    <div class="project-item">
+      <div class="project-num">01</div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag tag-blue">Excel</span>
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-gray">Dashboard</span>
+        </div>
+        <div class="project-title">NetSuite Vendor Spend Dashboard</div>
+        <div class="project-desc">Built an interactive Excel dashboard from NetSuite vendor bill exports — featuring pivot tables, dynamic XLOOKUP lookups, and slicers that let any team member filter by department, date, or vendor instantly. Replaced a 3-hour manual monthly report.</div>
+        <div class="project-stack">
+          <span class="tag tag-gray">Excel Advanced</span>
+          <span class="tag tag-gray">Pivot Tables</span>
+          <span class="tag tag-gray">XLOOKUP</span>
+          <span class="tag tag-gray">Dynamic Arrays</span>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">02</div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag tag-blue">Power BI</span>
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-orange">Data Modeling</span>
+        </div>
+        <div class="project-title">Budget vs Actual Power BI Report</div>
+        <div class="project-desc">Connected Power BI directly to NetSuite data to build a live Budget vs Actual report by department — complete with DAX measures, variance analysis, and drill-through pages. Gives finance teams a real-time view of spending against targets.</div>
+        <div class="project-stack">
+          <span class="tag tag-gray">Power BI</span>
+          <span class="tag tag-gray">DAX</span>
+          <span class="tag tag-gray">Star Schema</span>
+          <span class="tag tag-gray">NetSuite REST API</span>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">03</div>
+      <div class="project-info">
+        <div class="project-tags">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-orange">Automation</span>
+          <span class="tag tag-green">NetSuite API</span>
+        </div>
+        <div class="project-title">Automated Weekly Spend Report — Python</div>
+        <div class="project-desc">Python script that pulls live vendor bill data from NetSuite's REST API, cleans it with Pandas, and generates a formatted Excel summary report automatically — saving 4–5 hours of manual work per week for a finance team.</div>
+        <div class="project-stack">
+          <span class="tag tag-gray">Python</span>
+          <span class="tag tag-gray">Pandas</span>
+          <span class="tag tag-gray">REST API</span>
+          <span class="tag tag-gray">openpyxl</span>
+        </div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">04 — Contact</div>
+  <h2 class="section-title">Let's work<br><em>together</em></h2>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <p>I'm available for part-time consulting, freelance projects, and long-term remote engagements. If your company runs on NetSuite and you want better visibility into your data — let's talk.</p>
+      <div class="contact-detail">
+        <div class="contact-line"><strong>Location</strong> Philippines (Remote-first)</div>
+        <div class="contact-line"><strong>Available</strong> Part-time & Freelance</div>
+        <div class="contact-line"><strong>Email</strong> <a href="mailto:neil@example.com">neil.espiritu@email.com</a></div>
+        <div class="contact-line"><strong>LinkedIn</strong> <a href="#">linkedin.com/in/neilespiritu</a></div>
+        <div class="contact-line"><strong>Upwork</strong> <a href="#">upwork.com/neil-espiritu</a></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Maria Santos" required>
+          </div>
+          <div class="form-group">
+            <label>Your email</label>
+            <input type="email" placeholder="maria@company.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>What do you need help with?</label>
+          <select>
+            <option value="">Select a service...</option>
+            <option>NetSuite data analysis & reporting</option>
+            <option>Power BI dashboard build</option>
+            <option>Python automation / report scripting</option>
+            <option>NetSuite AI features setup</option>
+            <option>Other / Let's discuss</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tell me about your project</label>
+          <textarea placeholder="Briefly describe what you're working on and what problem you're trying to solve..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start;font-family:var(--sans)">Send message →</button>
+        <div class="form-success" id="form-success">
+          ✓ Message sent! I'll get back to you within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Neil Abner Espiritu — NetSuite Data & AI Consultant</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Form submit
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }, 1000);
+}
+</script>
+</body>
+</html>
