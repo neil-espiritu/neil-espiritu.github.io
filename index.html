@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neil Abner Espiritu — NetSuite Data & AI Consultant</title>
+<title>Neil Abner Espiritu — NetSuite Administrator & AI/Data Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -195,6 +195,25 @@
     line-height: 1.85;
   }
   .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-text .prev-at {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--bg2);
+  }
+  .about-text .prev-at p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .about-text .prev-at span {
+    font-size: 13px;
+    color: var(--muted);
+  }
   .about-stats {
     display: flex; flex-direction: column; gap: 0;
     border: 1px solid var(--border);
@@ -219,8 +238,45 @@
   .stat-title { font-size: 14px; font-weight: 500; color: var(--text); }
   .stat-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg2); }
+  .exp-list {
+    margin-top: 3.5rem;
+    display: flex; flex-direction: column; gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .exp-item {
+    padding: 2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-role { font-size: 16px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .exp-desc { font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 560px; }
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+    padding-top: 4px;
+  }
+  .exp-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+
   /* ── SKILLS ── */
-  #skills { background: var(--bg2); }
+  #skills { background: var(--bg); }
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -238,7 +294,6 @@
   }
   .skill-card:hover { background: var(--bg3); }
   .skill-card + .skill-card { border-left: 1px solid var(--border); }
-  .skills-grid .skill-row-grid { border-top: 1px solid var(--border); }
   .skill-icon {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -282,7 +337,21 @@
   .cert-badge small { display: block; font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 1px; }
 
   /* ── PROJECTS ── */
-  .projects-list { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  #projects { background: var(--bg2); }
+  .projects-note {
+    margin-top: 1rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(200,240,96,0.2);
+    border-radius: 2px;
+    background: rgba(200,240,96,0.05);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+  .projects-note::before { content: '🚧'; font-size: 13px; }
+  .projects-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
   .project-item {
     display: grid;
     grid-template-columns: 80px 1fr auto;
@@ -291,10 +360,10 @@
     padding: 2rem 2rem;
     border-bottom: 1px solid var(--border);
     transition: background 0.2s;
-    cursor: pointer;
   }
   .project-item:last-child { border-bottom: none; }
   .project-item:hover { background: var(--bg3); }
+  .project-item.coming-soon { opacity: 0.5; }
   .project-num {
     font-family: var(--serif);
     font-size: 2.8rem;
@@ -316,7 +385,7 @@
   .project-item:hover .project-arrow { color: var(--accent); transform: translate(3px, -3px); }
 
   /* ── CONTACT ── */
-  #contact { background: var(--bg2); }
+  #contact { background: var(--bg); }
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
@@ -408,6 +477,7 @@
     .skills-grid { grid-template-columns: 1fr; }
     .skill-card + .skill-card { border-left: none; border-top: 1px solid var(--border); }
     .project-item { grid-template-columns: 48px 1fr auto; gap: 1rem; }
+    .exp-item { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 2rem 1.5rem; }
   }
@@ -420,6 +490,7 @@
   <div class="nav-logo">NAE_PORTFOLIO.V1</div>
   <div class="nav-links">
     <a href="#about">About</a>
+    <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
@@ -431,7 +502,7 @@
   <div class="hero-grid"></div>
   <div class="hero-tag">NetSuite · Data Analytics · AI Integration</div>
   <h1>Neil Abner<br><em>Espiritu</em></h1>
-  <p class="hero-desc">I help businesses unlock the full value of their NetSuite data — turning raw ERP exports into intelligent dashboards, automated reports, and AI-powered insights that drive real decisions.</p>
+  <p class="hero-desc">NetSuite Administrator with 6+ years of ERP experience — now transitioning into data analytics and AI integration. I help businesses turn their NetSuite data into intelligent dashboards, automated reports, and AI-powered workflows.</p>
   <div class="hero-ctas">
     <a href="#projects" class="btn-primary">View my work</a>
     <a href="#contact" class="btn-secondary">Work with me</a>
@@ -443,33 +514,37 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="section-label">01 — About</div>
-  <h2 class="section-title">ERP expertise meets<br><em>data intelligence</em></h2>
+  <h2 class="section-title">6 years of NetSuite —<br><em>now adding AI & data</em></h2>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>I'm a <strong>NetSuite specialist and data analyst</strong> based in the Philippines, combining deep ERP knowledge with modern data and AI skills to help companies make better decisions, faster.</p>
-      <p>Most data analysts don't understand ERP systems. Most ERP consultants don't speak the language of data. <strong>I bridge both worlds</strong> — translating your NetSuite data into dashboards, automations, and AI workflows that your finance and operations teams can actually use.</p>
-      <p>Currently building expertise in <strong>Python, SQL, Power BI, and NetSuite's AI features</strong> — with a focus on the small-to-mid-sized businesses that need senior-level data strategy without the enterprise price tag.</p>
+      <p>I'm a <strong>NetSuite Administrator</strong> based in the Philippines with 6+ years of hands-on ERP experience — spanning implementation consulting at <strong>Oracle NetSuite itself</strong>, technical administration across global companies, and system integration with tools like Celigo.</p>
+      <p>Most data analysts don't understand ERP systems. Most ERP consultants don't speak the language of data. <strong>I bridge both worlds</strong> — and I'm now building the next layer: combining NetSuite with Python, SQL, Power BI, and AI to turn raw ERP data into intelligent dashboards and automated workflows.</p>
+      <p>Currently following a <strong>structured 6-month NetSuite + Data/AI curriculum</strong> — 2 hours every morning — with a focus on small-to-mid-sized businesses that need senior-level data strategy without the enterprise price tag.</p>
+      <div class="prev-at">
+        <p>Previously at</p>
+        <span>Oracle NetSuite · SomnoMed Australia · Lone Wolf Technologies · Kaisa Consulting · DXC Technology</span>
+      </div>
     </div>
     <div class="about-stats reveal">
       <div class="stat-row">
         <div class="stat-num">6+</div>
         <div class="stat-info">
-          <div class="stat-title">Months focused learning</div>
-          <div class="stat-sub">2 hours daily, structured curriculum</div>
+          <div class="stat-title">Years NetSuite experience</div>
+          <div class="stat-sub">Consulting · Administration · Implementation</div>
         </div>
       </div>
       <div class="stat-row">
         <div class="stat-num">2</div>
         <div class="stat-info">
           <div class="stat-title">NetSuite certifications</div>
-          <div class="stat-sub">SuiteFoundation · Admin</div>
+          <div class="stat-sub">SuiteFoundation · Admin (In Progress)</div>
         </div>
       </div>
       <div class="stat-row">
-        <div class="stat-num">3</div>
+        <div class="stat-num">5</div>
         <div class="stat-info">
-          <div class="stat-title">Portfolio projects</div>
-          <div class="stat-sub">Excel · Power BI · Python automation</div>
+          <div class="stat-title">Companies served</div>
+          <div class="stat-sub">Oracle · SomnoMed · Lone Wolf · Kaisa · DXC</div>
         </div>
       </div>
       <div class="stat-row">
@@ -484,9 +559,109 @@
 </section>
 <div class="divider"></div>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">02 — Experience</div>
+  <h2 class="section-title">Where I've<br><em>worked</em></h2>
+  <div class="exp-list reveal">
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">ERP Administrator</div>
+        <div class="exp-company">Maplecrest Group, Inc.</div>
+        <div class="exp-desc">Serving as the internal NetSuite Administrator during the pre-implementation and system configuration phase. Evaluating business processes and mapping them to NetSuite workflows, configuring roles and permissions, coordinating data migration requirements, and building internal SOPs for post-go-live operations. Simultaneously self-studying SuiteQL, REST API, and AI integration capabilities.</div>
+        <div class="exp-tags">
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-gray">Pre-implementation</span>
+          <span class="tag tag-gray">Workflows</span>
+          <span class="tag tag-gray">Data Migration</span>
+          <span class="tag tag-orange">AI</span>
+        </div>
+      </div>
+      <div class="exp-date">Mar 2025 — Present<br>Philippines · Hybrid</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">NetSuite Administrator</div>
+        <div class="exp-company">Lone Wolf Technologies</div>
+        <div class="exp-desc">Ensured optimal performance of NetSuite systems — managing user roles and permissions, creating and maintaining workflows, reports, and dashboards. Handled database maintenance, managed internal support requests, conducted UAT, and provided real-time support to users and integrated applications.</div>
+        <div class="exp-tags">
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-gray">Workflows</span>
+          <span class="tag tag-gray">Dashboards</span>
+          <span class="tag tag-gray">UAT</span>
+        </div>
+      </div>
+      <div class="exp-date">Feb 2024 — Feb 2025<br>Philippines · Hybrid</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">NetSuite Administrator</div>
+        <div class="exp-company">SomnoMed Australia</div>
+        <div class="exp-desc">Direct support to the Global IT Operations Manager. Created and optimized custom SuiteScripts, supported Celigo integrations, debugged production issues, and participated in cross-functional implementation teams. Served as the first point of contact for NetSuite users across Finance and other departments.</div>
+        <div class="exp-tags">
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-green">SuiteScript</span>
+          <span class="tag tag-gray">Celigo</span>
+          <span class="tag tag-gray">Implementation</span>
+          <span class="tag tag-blue">REST API</span>
+        </div>
+      </div>
+      <div class="exp-date">Aug 2022 — Feb 2024<br>Australia (Remote)</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">NetSuite Techno-Functional Consultant</div>
+        <div class="exp-company">Oracle NetSuite</div>
+        <div class="exp-desc">Hands-on NetSuite implementation and optimization for clients across the US and Canada. Provided strategic guidance for system customization, collaborated with cross-functional teams to design solutions, conducted end-user training, and delivered scalable ERP solutions aligned with client business objectives.</div>
+        <div class="exp-tags">
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-gray">Implementation</span>
+          <span class="tag tag-gray">US & Canada Clients</span>
+          <span class="tag tag-orange">Consulting</span>
+        </div>
+      </div>
+      <div class="exp-date">May 2021 — Jun 2022<br>Philippines</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">NetSuite Consultant</div>
+        <div class="exp-company">Kaisa Consulting</div>
+        <div class="exp-desc">Implemented and developed NetSuite customizations, translated business requirements into functional specifications, and provided hands-on guidance to both technical and non-technical stakeholders in resolving issues.</div>
+        <div class="exp-tags">
+          <span class="tag tag-green">NetSuite</span>
+          <span class="tag tag-gray">Customization</span>
+          <span class="tag tag-gray">Business Analysis</span>
+        </div>
+      </div>
+      <div class="exp-date">Sep 2019 — May 2021<br>Quezon City, PH</div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Technology Consultant</div>
+        <div class="exp-company">DXC Technology</div>
+        <div class="exp-desc">Assigned to the Master Data Management team as subject matter expert on SAP SD Material Determination. Maintained and updated records in SAP, managed customer-specific product numbers and EAN mappings, and handled substitution of discontinued materials.</div>
+        <div class="exp-tags">
+          <span class="tag tag-gray">SAP SD</span>
+          <span class="tag tag-gray">Master Data</span>
+          <span class="tag tag-gray">ERP</span>
+        </div>
+      </div>
+      <div class="exp-date">Nov 2017 — Dec 2018<br>Metro Manila, PH</div>
+    </div>
+
+  </div>
+</section>
+<div class="divider"></div>
+
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">02 — Skills & Certifications</div>
+  <div class="section-label">03 — Skills & Certifications</div>
   <h2 class="section-title">A rare combination of<br><em>ERP, data & AI</em></h2>
   <div class="skills-grid reveal">
     <div class="skill-card">
@@ -498,22 +673,24 @@
         <span class="tag tag-green">Saved Searches</span>
         <span class="tag tag-green">Workflows</span>
         <span class="tag tag-green">REST API</span>
-        <span class="tag tag-green">AI Features</span>
+        <span class="tag tag-green">SuiteScript</span>
+        <span class="tag tag-green">Celigo</span>
       </div>
-      <p>Deep platform knowledge covering financials, inventory, procurement, and reporting — the foundation everything else is built on.</p>
+      <p>Deep platform knowledge covering financials, inventory, procurement, and reporting — built across 6+ years and multiple industries.</p>
     </div>
     <div class="skill-card">
       <span class="skill-icon">◈</span>
       <div class="skill-card-title">Data Analysis</div>
       <div class="skill-tags">
+        <span class="tag tag-blue">SQL</span>
+        <span class="tag tag-blue">Excel Advanced</span>
+        <span class="tag tag-blue">Pivot Tables</span>
+        <span class="tag tag-blue">XLOOKUP</span>
+        <span class="tag tag-blue">Power BI</span>
         <span class="tag tag-blue">Python</span>
         <span class="tag tag-blue">Pandas</span>
-        <span class="tag tag-blue">SQL</span>
-        <span class="tag tag-blue">Excel</span>
-        <span class="tag tag-blue">Power BI</span>
-        <span class="tag tag-blue">DAX</span>
       </div>
-      <p>From raw data exports to executive dashboards — I clean, transform, analyze, and visualize data that drives decisions.</p>
+      <p>Currently building — from raw NetSuite exports to executive dashboards. Week 1 of a structured 6-month data curriculum.</p>
     </div>
     <div class="skill-card">
       <span class="skill-icon">◎</span>
@@ -521,27 +698,28 @@
       <div class="skill-tags">
         <span class="tag tag-orange">Prompt Engineering</span>
         <span class="tag tag-orange">NS AI Copilot</span>
-        <span class="tag tag-orange">Bill Capture</span>
+        <span class="tag tag-orange">Bill Capture AI</span>
         <span class="tag tag-orange">Workflow AI</span>
         <span class="tag tag-orange">Python Scripts</span>
       </div>
-      <p>Automating the manual, repetitive work that slows finance teams down — using AI tools built into NetSuite and custom Python scripts.</p>
+      <p>Automating the manual, repetitive work that slows finance teams down — using AI tools built into NetSuite and custom automation scripts.</p>
     </div>
   </div>
 
   <div class="cert-row reveal">
-    <div class="cert-badge"><span>🏅</span><div><div>NetSuite SuiteFoundation</div><small>Oracle Certified · In Progress</small></div></div>
-    <div class="cert-badge"><span>🏅</span><div><div>NetSuite Administrator</div><small>Oracle Certified · In Progress</small></div></div>
+    <div class="cert-badge"><span>🏅</span><div><div>NetSuite SuiteFoundation</div><small>Oracle · In Progress</small></div></div>
+    <div class="cert-badge"><span>🏅</span><div><div>NetSuite Administrator</div><small>Oracle · In Progress</small></div></div>
     <div class="cert-badge"><span>📊</span><div><div>Power BI Data Analyst</div><small>Microsoft · Planned</small></div></div>
-    <div class="cert-badge"><span>🐍</span><div><div>Python for Data Science</div><small>Kaggle Certified · In Progress</small></div></div>
+    <div class="cert-badge"><span>🐍</span><div><div>Python for Data Science</div><small>Kaggle · In Progress</small></div></div>
   </div>
 </section>
 <div class="divider"></div>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">03 — Projects & Case Studies</div>
-  <h2 class="section-title">Real work,<br><em>real results</em></h2>
+  <div class="section-label">04 — Projects & Case Studies</div>
+  <h2 class="section-title">Building in<br><em>public</em></h2>
+  <div class="projects-note">Projects in progress — first portfolio piece dropping end of Month 1</div>
   <div class="projects-list reveal">
 
     <div class="project-item">
@@ -551,9 +729,10 @@
           <span class="tag tag-blue">Excel</span>
           <span class="tag tag-green">NetSuite</span>
           <span class="tag tag-gray">Dashboard</span>
+          <span class="tag tag-orange">In Progress</span>
         </div>
         <div class="project-title">NetSuite Vendor Spend Dashboard</div>
-        <div class="project-desc">Built an interactive Excel dashboard from NetSuite vendor bill exports — featuring pivot tables, dynamic XLOOKUP lookups, and slicers that let any team member filter by department, date, or vendor instantly. Replaced a 3-hour manual monthly report.</div>
+        <div class="project-desc">Building an interactive Excel dashboard from NetSuite vendor bill exports — featuring pivot tables, dynamic XLOOKUP lookups, and slicers for filtering by department, date, or vendor. Target: replace a manual monthly report. Currently on Week 1 — pivot tables & data cleanup.</div>
         <div class="project-stack">
           <span class="tag tag-gray">Excel Advanced</span>
           <span class="tag tag-gray">Pivot Tables</span>
@@ -564,36 +743,35 @@
       <div class="project-arrow">↗</div>
     </div>
 
-    <div class="project-item">
+    <div class="project-item coming-soon">
       <div class="project-num">02</div>
       <div class="project-info">
         <div class="project-tags">
           <span class="tag tag-blue">Power BI</span>
           <span class="tag tag-green">NetSuite</span>
-          <span class="tag tag-orange">Data Modeling</span>
+          <span class="tag tag-gray">Coming Month 3</span>
         </div>
         <div class="project-title">Budget vs Actual Power BI Report</div>
-        <div class="project-desc">Connected Power BI directly to NetSuite data to build a live Budget vs Actual report by department — complete with DAX measures, variance analysis, and drill-through pages. Gives finance teams a real-time view of spending against targets.</div>
+        <div class="project-desc">Planned: connect Power BI directly to NetSuite data to build a live Budget vs Actual report by department — with DAX measures, variance analysis, and drill-through pages.</div>
         <div class="project-stack">
           <span class="tag tag-gray">Power BI</span>
           <span class="tag tag-gray">DAX</span>
-          <span class="tag tag-gray">Star Schema</span>
           <span class="tag tag-gray">NetSuite REST API</span>
         </div>
       </div>
       <div class="project-arrow">↗</div>
     </div>
 
-    <div class="project-item">
+    <div class="project-item coming-soon">
       <div class="project-num">03</div>
       <div class="project-info">
         <div class="project-tags">
           <span class="tag tag-blue">Python</span>
           <span class="tag tag-orange">Automation</span>
-          <span class="tag tag-green">NetSuite API</span>
+          <span class="tag tag-gray">Coming Month 4</span>
         </div>
         <div class="project-title">Automated Weekly Spend Report — Python</div>
-        <div class="project-desc">Python script that pulls live vendor bill data from NetSuite's REST API, cleans it with Pandas, and generates a formatted Excel summary report automatically — saving 4–5 hours of manual work per week for a finance team.</div>
+        <div class="project-desc">Planned: Python script that pulls live vendor bill data from NetSuite's REST API, cleans it with Pandas, and generates a formatted Excel summary report automatically.</div>
         <div class="project-stack">
           <span class="tag tag-gray">Python</span>
           <span class="tag tag-gray">Pandas</span>
@@ -610,7 +788,7 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">04 — Contact</div>
+  <div class="section-label">05 — Contact</div>
   <h2 class="section-title">Let's work<br><em>together</em></h2>
   <div class="contact-grid">
     <div class="contact-info reveal">
@@ -618,9 +796,9 @@
       <div class="contact-detail">
         <div class="contact-line"><strong>Location</strong> Philippines (Remote-first)</div>
         <div class="contact-line"><strong>Available</strong> Part-time & Freelance</div>
-        <div class="contact-line"><strong>Email</strong> <a href="mailto:neil@example.com">neil.espiritu@email.com</a></div>
-        <div class="contact-line"><strong>LinkedIn</strong> <a href="#">linkedin.com/in/neilespiritu</a></div>
-        <div class="contact-line"><strong>Upwork</strong> <a href="#">upwork.com/neil-espiritu</a></div>
+        <div class="contact-line"><strong>Email</strong> <a href="mailto:espiritunao@gmail.com">espiritunao@gmail.com</a></div>
+        <div class="contact-line"><strong>LinkedIn</strong> <a href="https://linkedin.com/in/neilespiritu" target="_blank">linkedin.com/in/neilespiritu</a></div>
+        <div class="contact-line"><strong>GitHub</strong> <a href="https://neil-espiritu.github.io" target="_blank">neil-espiritu.github.io</a></div>
       </div>
     </div>
     <div class="reveal">
@@ -643,6 +821,7 @@
             <option>Power BI dashboard build</option>
             <option>Python automation / report scripting</option>
             <option>NetSuite AI features setup</option>
+            <option>NetSuite implementation support</option>
             <option>Other / Let's discuss</option>
           </select>
         </div>
@@ -661,9 +840,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Neil Abner Espiritu — NetSuite Data & AI Consultant</p>
+  <p>© 2026 Neil Abner Espiritu — NetSuite Administrator & AI/Data Specialist</p>
   <div class="footer-links">
     <a href="#about">About</a>
+    <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
